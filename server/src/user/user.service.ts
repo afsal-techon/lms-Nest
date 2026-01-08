@@ -22,4 +22,9 @@ export class UserService {
       password: registerUserDto.password,
     });
   }
+
+
+  async getUserById(id:string){
+    return await this.userModel.findOne({ _id: id }); 
+  }
 }
