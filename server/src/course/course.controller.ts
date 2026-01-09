@@ -16,12 +16,13 @@ import { AuthGuard } from 'src/auth/auth.guard';
 import type { AuthedRequest } from 'src/common.types';
 import { Roles } from 'src/auth/roles.decorator';
 import { Role } from 'src/user/user.types';
+import { RolesGuard } from 'src/auth/roles.gaurds';
 
 @Controller('courses')
 export class CourseController {
   constructor(private readonly courseService: CourseService) {}
 
-  @UseGuards(AuthGuard)
+  @UseGuards(AuthGuard, RolesGuard)
   @Roles(Role.Admin)
   @Post()
   async create(

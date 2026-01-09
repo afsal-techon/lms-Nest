@@ -20,6 +20,7 @@ export class UserService {
       lname: registerUserDto.lname,
       email: registerUserDto.email,
       password: registerUserDto.password,
+      role: registerUserDto.role,
     });
   }
 

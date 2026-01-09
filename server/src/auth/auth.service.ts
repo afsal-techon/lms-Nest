@@ -26,7 +26,9 @@ export class AuthService {
       password: hash,
     });
 
-    const payload = { userId: user._id };
+    //todo : remove role admin from here . only test
+    // const payload = { userId: user._id ,role: 'admin' };
+    const payload = { userId: user._id  };
     const token = await this.jwtService.signAsync(payload);
     return {
       token: token,
