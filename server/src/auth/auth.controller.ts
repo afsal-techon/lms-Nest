@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/registerUser.dto';
 import { AuthGuard } from './auth.guard';
 import { UserService } from 'src/user/user.service';
+import type { AuthedRequest } from 'src/common.types';
 
 @Controller('auth')
 export class AuthController {
@@ -32,12 +33,11 @@ export class AuthController {
 
   @UseGuards(AuthGuard)
   @Get('profile')
-  async getProfile(@Request() req) {
-    const userId = req.user.sub;
+  async getProfile(@Request() req: AuthedRequest) {
+    const userId = req.user.userId;
 
     const user = await this.userService.getUserById(userId);
-    console.log(user,'user');
-    return user
-    
+    console.log(user, 'user');
+    return user;
   }
 }
